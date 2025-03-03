@@ -1,12 +1,12 @@
-#ifndef FILEIO_H
-#define FILEIO_H
+#pragma once
 
-#include "todo.h"
+#include "doubly_linked_list.h"
 #include <fstream>
 
 class BinaryFileHanlder
 {
   private:
+    void m_read_string(std::string &output, size_t length);
     std::fstream m_file;
     std::string m_filename;
 
@@ -15,8 +15,6 @@ class BinaryFileHanlder
 
     ~BinaryFileHanlder();
 
-    void read(TodoList &output);
-    void write(const TodoList &input);
+    void read(DoublyLinkedList &output);
+    void write(const DoublyLinkedList &input);
 };
-
-#endif // !FILEIO_H
