@@ -4,3 +4,7 @@ build
 compile_commands.json
 subprojects/*
 !subprojects/*.wrap
+
+*.bin
+*.zip
+vgcore.*

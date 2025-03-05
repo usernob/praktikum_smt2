@@ -4,10 +4,15 @@
 #include <iostream>
 
 #if defined(_WIN32) // Windows
+
+#include <windows.h>
 SetConsoleOutputCP(CP_UTF8);
 #define CLEAR_SCREEN system("cls");
+
 #elif defined(__linux__) || defined(__unix__) // Linux
+
 #define CLEAR_SCREEN std::cout << "\x1B[2J\x1B[H";
+
 #endif
 
 

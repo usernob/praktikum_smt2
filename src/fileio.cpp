@@ -67,9 +67,10 @@ void BinaryFileHanlder::write(const DoublyLinkedList &input)
     }
     if (input.is_empty()) {
         m_file.close();
+        return;
     }
 
-    for (auto item = input.begin(); item != input.end() && item != nullptr; ++item)
+    for (auto item = input.begin(); item != input.end(); ++item)
     {
         Food *food = *item;
 

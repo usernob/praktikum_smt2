@@ -29,7 +29,6 @@ class DoublyLinkedList
 
   private:
     Node *head = nullptr;
-    Node *tail = nullptr;
 
     int size = 0;
 

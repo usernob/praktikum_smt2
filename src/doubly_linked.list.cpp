@@ -21,18 +21,17 @@ void DoublyLinkedList::add(const Food &data)
         head = new Node(data);
         head->next = head;
         head->prev = head;
-        tail = head;
     }
     else
     {
         Node *new_node = new Node(data);
-        tail->next = new_node;
-        head->prev = new_node;
+        Node *last = head->prev;
 
-        new_node->prev = tail;
         new_node->next = head;
+        new_node->prev = last;
 
-        tail = new_node;
+        last->next = new_node;
+        head->prev = new_node;
     }
     size++;
 }
@@ -65,10 +64,6 @@ void DoublyLinkedList::remove(const std::string &name)
 
 void DoublyLinkedList::remove(Node *node)
 {
-    if (node == tail)
-    {
-        tail = node->prev;
-    }
     if (node == head)
     {
         head = node->next;
@@ -80,7 +75,6 @@ void DoublyLinkedList::remove(Node *node)
     if (size == 0)
     {
         head = nullptr;
-        tail = nullptr;
     }
 }
 
@@ -94,6 +88,5 @@ void DoublyLinkedList::clear()
         current = next;
     }
     head = nullptr;
-    tail = nullptr;
     size = 0;
 }

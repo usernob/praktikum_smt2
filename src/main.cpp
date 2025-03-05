@@ -203,7 +203,7 @@ static void admin()
             std::cout << message << "\n";
         }
         std::cout << "======================================\n";
-        std::cout << "ADMIN'S DASHBOARD\n";
+        std::cout << "          ADMIN'S DASHBOARD\n";
         std::cout << "======================================\n";
         std::cout << "|1. Add Food's Data\n";
         std::cout << "|2. Find Food's Data\n";
@@ -292,7 +292,7 @@ int main()
 
     CLEAR_SCREEN
     std::cout << "======================================\n";
-    std::cout << "WELCOME TO YU EN I ES EI\n";
+    std::cout << "      WELCOME TO YU EN I ES EI\n";
     std::cout << "======================================\n";
     std::cout << "|1. Login as Admin\n";
     std::cout << "|2. Login as Cashier\n";
