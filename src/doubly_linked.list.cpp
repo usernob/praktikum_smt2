@@ -1,11 +1,12 @@
 #include "doubly_linked_list.h"
+#include <cstring>
 
-DoublyLinkedList::Node *DoublyLinkedList::m_find(const std::string &name) const
+DoublyLinkedList::Node *DoublyLinkedList::m_find(const char *name) const
 {
     Node *current = head;
     for (int index = 0; index < size; index++)
     {
-        if (current->data.name == name)
+        if (strcmp(current->data.name, name) == 0)
         {
             return current;
         }
@@ -36,7 +37,7 @@ void DoublyLinkedList::add(const Food &data)
     size++;
 }
 
-Food *DoublyLinkedList::find(const std::string &name) const
+Food *DoublyLinkedList::find(const char *name) const
 {
     Node *element = m_find(name);
     if (element != nullptr)
@@ -46,7 +47,7 @@ Food *DoublyLinkedList::find(const std::string &name) const
     return nullptr;
 }
 
-void DoublyLinkedList::remove(const std::string &name)
+void DoublyLinkedList::remove(const char *name)
 {
     if (is_empty())
     {

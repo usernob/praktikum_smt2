@@ -6,10 +6,14 @@ project(
 
 incdir = include_directories('include')
 src = [
-    'src/main.cpp',
     'src/utils.cpp',
     'src/doubly_linked.list.cpp',
+    'src/queue.cpp',
     'src/fileio.cpp',
+    'src/main.cpp',
+    'src/admin.cpp',
+    'src/cashier.cpp',
+    'src/user.cpp',
 ]
 
 executable('main', src, include_directories: incdir)

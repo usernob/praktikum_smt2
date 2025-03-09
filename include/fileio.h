@@ -1,17 +1,19 @@
 #pragma once
 
 #include "doubly_linked_list.h"
+#include "type.h"
 #include <fstream>
+#include <stdexcept>
 
 class BinaryFileHanlder
 {
-  private:
-    void m_read_string(std::string &output, size_t length);
+private:
+    void m_read_string(char *output, size_t length);
     std::fstream m_file;
-    std::string m_filename;
+    const char *m_filename;
 
-  public:
-    BinaryFileHanlder(const std::string &filename);
+public:
+    BinaryFileHanlder(const char *filename);
 
     ~BinaryFileHanlder();
 

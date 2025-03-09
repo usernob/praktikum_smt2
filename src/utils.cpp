@@ -1,42 +1,77 @@
 #include "utils.h"
 
-void get_input(const std::string &message, std::string &output)
+bool clean_cin()
 {
-    std::cout << message << " ";
-    getline(std::cin, output);
-}
-
-bool get_input(const std::string &message, int &output, int min, int max)
-{
-    std::string temp;
-    get_input(message, temp);
-    if (!is_number(temp))
+    std::cin.clear();
+    if (std::cin.peek() != EOF && std::cin.peek() == '\n')
     {
-        return false;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-
-    int i_temp = std::stoi(temp);
-    if (is_out_of_range(i_temp, min, max))
-    {
-        return false;
-    }
-
-    output = i_temp;
-
     return true;
 }
 
-bool get_input(const std::string &message, bool &output)
+void print_detail_food(const Food *food)
+{
+    std::cout << "--------------------------------------\n";
+    std::cout << "| Food \t\t: " << food->name << "\n";
+    std::cout << "| Price \t: Rp " << food->price << "\n";
+    std::cout << "| Category \t: " << food->category << "\n";
+    std::cout << "| Available \t: " << (food->available ? "Yes" : "No") << "\n";
+    std::cout << "--------------------------------------\n";
+}
+
+void print_detail_order(const Order *order)
+{
+    std::cout << "--------------------------------------\n";
+    std::cout << "| ID\t\t: " << order->id << "\n";
+    std::cout << "| Name\t\t: " << order->name << "\n";
+    std::cout << "| Food\t\t: " << order->food_name << "\n";
+    std::cout << "| Amount\t: " << order->amount << "\n";
+    std::cout << "| Total\t\t: " << order->total_price << "\n";
+    std::cout << "| Note\t\t: " << order->note << "\n";
+    std::cout << "--------------------------------------\n";
+}
+
+bool get_input(const char *message, char *output, size_t length)
+{
+    std::cout << message << " ";
+    std::cin.getline(output, length);
+    return !std::cin.fail();
+}
+
+bool get_input(const char *message, int &output, int min, int max)
+{
+    char temp[20];
+    if (get_input(message, temp, 20))
+    {
+        if (is_number(temp))
+        {
+            output = std::atoi(temp);
+            return !is_out_of_range(output, min, max);
+        }
+    }
+    return false;
+}
+
+bool get_input(const char *message, bool &output)
 {
     int temp;
-    return get_input(message, temp, 0, 1) && (output = temp == 1);
+    return get_input(message, temp, 0, 1) && (output = temp);
+}
+
+bool get_input_confirm(const char *message)
+{
+    std::cout << message << " ";
+    char choice;
+    std::cin >> choice;
+    clean_cin();
+    return !std::cin.fail() && (choice == 'y' || choice == 'Y');
 }
 
 void wait_enter()
 {
-    std::string temp;
     std::cout << "\nPress Enter to Continue!!" << std::endl;
-    getline(std::cin, temp);
+    clean_cin();
 }
 
 bool is_out_of_range(int input, int min, int max)
@@ -44,14 +79,17 @@ bool is_out_of_range(int input, int min, int max)
     return input < min || input > max;
 }
 
-bool is_number(const std::string &input)
+bool is_number(const char *input)
 {
-    for (char c : input)
+    size_t i = 0;
+    while (input[i] != '\0')
     {
+        char c = input[i];
         if (!isdigit(c))
         {
             return false;
         }
+        i++;
     }
     return true;
 }

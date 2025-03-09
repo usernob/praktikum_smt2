@@ -1,7 +1,10 @@
 #pragma once
 
+#include "doubly_linked_list.h"
 #include <climits>
+#include <cstddef>
 #include <iostream>
+#include <limits>
 
 #if defined(_WIN32) // Windows
 
@@ -15,11 +18,14 @@ SetConsoleOutputCP(CP_UTF8);
 
 #endif
 
-
-void get_input(const std::string &message, std::string &output);
-bool get_input(const std::string &message, int &output, int min = 0, int max = INT_MAX);
-bool get_input(const std::string &message, bool &output);
+void print_detail_food(const Food *food);
+void print_detail_order(const Order *order);
+bool get_input(const char *message, char *output, size_t length);
+bool get_input(const char *message, int &output, int min = 0, int max = INT_MAX);
+bool get_input(const char *message, bool &output);
+bool get_input_confirm(const char *message);
 void wait_enter();
 
+bool clean_cin();
 bool is_out_of_range(int input, int min, int max);
-bool is_number(const std::string &input);
+bool is_number(const char *input);

@@ -28,6 +28,7 @@
             valgrind
             clang-tools
             tmux
+            gdb
           ];
 
           shellHook = ''

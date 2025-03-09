@@ -1,18 +1,10 @@
 #pragma once
 
-#include <string>
-
-struct Food
-{
-    std::string name;
-    int price;
-    std::string category;
-    bool available;
-};
+#include "type.h"
 
 class DoublyLinkedList
 {
-  public:
+public:
     struct Node
     {
         Food data;
@@ -27,12 +19,12 @@ class DoublyLinkedList
         }
     };
 
-  private:
+private:
     Node *head = nullptr;
 
     int size = 0;
 
-  public:
+public:
     DoublyLinkedList() {};
 
     ~DoublyLinkedList()
@@ -42,12 +34,12 @@ class DoublyLinkedList
 
     void add(const Food &data); // Create
 
-    Food *find(const std::string &name) const; // Search
+    Food *find(const char *name) const; // Search
 
     // Internal find very dangerous to use directly, avoid it if you can
-    Node *m_find(const std::string &name) const;
+    Node *m_find(const char *name) const;
 
-    void remove(const std::string &name); // Delete
+    void remove(const char *name); // Delete
     void remove(Node *node);
 
     void clear();
@@ -67,7 +59,7 @@ class DoublyLinkedList
         Node *current;
         bool first_iterator;
 
-      public:
+    public:
         Iterator(Node *node)
         {
             current = node;
